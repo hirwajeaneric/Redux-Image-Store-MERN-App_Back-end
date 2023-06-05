@@ -17,7 +17,7 @@ const findById = async(req, res, next) => {
 
 // Establishing a multer storage
 const multerStorage = multer.diskStorage({
-    destination: (req, file, callback) => { callback(null, './profiles') },
+    destination: (req, file, callback) => { callback(null, './uploads') },
     filename: (req, file, callback) => { callback(null, `img-${file.originalname}`) }
 })
 
@@ -64,17 +64,12 @@ const remove = async(req, res, next) => {
         throw new NotFoundError(`Failed to delete account.`);
     }
     
-    res.status(StatusCodes.OK).json({ message: "Account deleted!" });
+    res.status(StatusCodes.OK).json({ message: "Image deleted!" });
 };
 
 const removeAll = async(req, res, next) => {
-    const deletedImage = await ImageModel.findByIdAndDelete(req.query.id);
-    
-    if (!deletedImage) {
-        throw new NotFoundError(`Failed to delete image.`);
-    }
-    
-    res.status(StatusCodes.OK).json({ message: "Image deleted!" });
+    const deletedImage = await ImageModel.deleteMany(); 
+    res.status(StatusCodes.OK).json({ message: "All images deleted!" });
 };
 
 module.exports = { getAll, findById, add, update, upload, remove, removeAll, attachFile }
