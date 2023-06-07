@@ -5,6 +5,11 @@ const ImageSchema = new mongoose.Schema({
         type: String, 
         required: [true, 'Full name must be provided'],
     },
+    likes: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
     uploadDate: { 
         type: Date, 
         required: true,
