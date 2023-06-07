@@ -6,7 +6,7 @@ const imageModal = require('../models/image.modal');
 
 const getAll = async(req, res, next) => {
     const images = await ImageModel.find({})
-    res.status(StatusCodes.OK).json({ nbHits: images.length, images })
+    res.status(StatusCodes.OK).json({ images })
 };
 
 const findById = async(req, res, next) => {
