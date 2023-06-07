@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const ImageSchema = new mongoose.Schema({
+    label: { 
+        type: String, 
+        required: [true, 'Image label must be provided'],
+    },
     name: { 
         type: String, 
-        required: [true, 'Full name must be provided'],
+        required: true,
     },
     likes: {
         type: Number,
